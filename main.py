@@ -93,10 +93,13 @@ for row in json_list["data"]:
 
 # Create Dataframe
 df = pd.DataFrame(data=list_series)
-
 # Clean dataframe
 df= clean_df(df)
+print(df.head())
 
 
 # Preprocess text data
-preprocess_text(df)
+lemma_words=preprocess_text(df)
+
+## Converting preprocessed text to vectors
+X = get_feature_vector(lemma_words)

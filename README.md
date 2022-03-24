@@ -73,7 +73,9 @@ TBD
 
 ## Analysis
 
-TBD  
+![Wordcloud](Images/wordcloud_sample.png)
+![geo](Images/geo_sample.png)
+
 
 ### Assumptions
 

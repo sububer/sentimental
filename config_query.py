@@ -1,4 +1,4 @@
-bearer_token = "AAAAAAAAAAAAAAAAAAAAALVIaQEAAAAAQM94Cx1OkRzk82M83r7KVTm6yOo%3DGjdRFC8AI5LqA1akpClbLXF57S7Vd1BzTbEtpGpyAG17IC6bpm"
+bearer_token = ""
 
 
 query = "((#Bitcoin OR #BTC OR BTC OR #Bitcoin OR #HarmonyOne OR ETH OR #Ethereum OR DOT OR #Polkadot OR #cryptocurrency)(((#Ukraine OR #Russia)(war OR conflict OR crisis OR economy)) OR (#UkraineRussiaWar OR #RussiaUkraineWar))) lang:en -is:retweet"

@@ -12,7 +12,7 @@ from nltk.stem import PorterStemmer
 from nltk.stem import WordNetLemmatizer
 
 from sklearn.feature_extraction.text import TfidfVectorizer
-nltk.download ()
+#nltk.download()
 stop_words= set(stopwords.words('english'))
 
 ## Cleaning the dataframe

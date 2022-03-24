@@ -1,4 +1,3 @@
-
 import requests
 import os
 import json
@@ -12,14 +11,17 @@ endpoint = "https://api.twitter.com/2/tweets/search/recent"
 params = {
     'query': query,
     'tweet.fields': 'created_at,author_id,entities,public_metrics',
-    'user.fields': 'username'
+    'user.fields': 'username',
+    'max_results': max_results,
+    'start_time': start_time,
+    'end_time': end_time
 }
 
 #'expansions': 'author_id,referenced_tweets.id,geo.place_id,in_reply_to_user_id,referenced_tweets.id.author_id',
 
 headers = {"Authorization": "Bearer {}".format(bearer_token)}
 
-with open("dataset.jsonl", "w") as datafile:
+with open("dataset.json", "w") as datafile:
 
     # MAKE FIRST REQUEST
     print("Getting tweets")
@@ -83,7 +85,7 @@ with open("dataset.jsonl", "w") as datafile:
 
     
 # Converting json to dataframe
-with open('dataset.jsonl', 'r') as f:
+with open('dataset.json', 'r') as f:
     json_list = json.load(f)
     list_series = []
 
@@ -95,11 +97,12 @@ for row in json_list["data"]:
 df = pd.DataFrame(data=list_series)
 # Clean dataframe
 df= clean_df(df)
-print(df.head())
 
 
 # Preprocess text data
-lemma_words=preprocess_text(df)
+lemma_words = preprocess_text(df)
 
 ## Converting preprocessed text to vectors
-X = get_feature_vector(lemma_words)
+#X = get_feature_vector(lemma_words)
+df.text = df.text.str.encode("utf-8")
+df.to_csv("query_0324.csv".format(start_time))

@@ -26,14 +26,27 @@ The data source for the sentiment analysis is Twitter Search API, specifically t
     - Tokenize tweets text
 4. resultant data is saved as .csv format in `./data/` folder, eg [2022323_144.csv](./data/2022323_144.csv)  
 
+BTC Price Data from [FTX BTC Feed](https://ftx.us/trade/BTC/USD)  
+
+NOTE: Data Prep details in [slide presentation](./media/preso.pdf) pages 4 and 5.
+
 ## Analysis Approach  
 
 Analysis Steps:
-1) [sentiment.py](./sentiment.py) is used to analyze the csv data
-2) 
+1. [sentiment.py](./sentiment.py) is used to analyze the csv data and generate sentiment [infer csv](data/2022323_infer.csv)
+2. [consolidate_data.py](./consolidate_data.py) reads in [infer csv data](data/2022323_infer.csv), and [BTC data](data/FTX_BTCUSD%2C%2030.csv), generates training data and plots
+3. [keras_train.py](./keras_train.py) consumes [train_dataset.csv](data/train_dataset.csv)  
+
+NOTE: Model details contained in [slide presentation](./media/preso.pdf) page 6.  
 
 
 ## Results  
+
+![Sentiment 7 Day](media/01_sentiment.png)
+![Sentiment 24 hr](media/02_Sentiment24hr.png)  
+![Emotions 7 Day](media/03_Emotions.png)
+![BTCPrice](04_BTC Price.png)
+![Wordcloud](media/word_cloud_0324.png)
 
 
 ## Technologies And Modules Used  
@@ -45,6 +58,8 @@ This proect uses [python 3.7](https://docs.python.org/3.7/) and the following mo
 - [re](https://docs.python.org/3.7/library/re.html?highlight=re#module-re)
 - [pandas](https://pypi.org/project/pandas/)
 - [numpy](https://pypi.org/project/numpy/)
+- [keras](https://keras.io/)
+- [tensorflow](https://www.tensorflow.org/)
 - [wordcloud](https://pypi.org/project/wordcloud/)
 - [nltk](https://github.com/nltk/nltk)
 - [json](https://docs.python.org/3/library/json.html)
@@ -89,11 +104,13 @@ You are now ready to run the program!
 
 ## Usage Notes
 
-**NOTE** Twitter API Usage  
+**IMPORTANT NOTE** Twitter API Usage  
 You must sign up for a Twitter API key in order to authenticate and fetch twitter data.  
 See [config_example](./config_example.py) for how to stage your Twitter API [Bearer Token](https://developer.twitter.com/en/docs/authentication/oauth-2-0/bearer-tokens)  
 
-[WordCloud](./wordcloud_viz.ipynb)  Generates a wordcloud visual from query data. Based on [folium](https://pypi.org/project/folium/) library.  
+Also, allow time and apply for an academic twitter api key, and not the free tier. This will open up a significantly higher usage and data granularity limit. Unfortunately with the free tier, you have limits on the amount of data you can pull.  
+
+[WordCloud](./wordcloud_viz.ipynb)  Generates a wordcloud visual from query data.   
 
 
 ## Contributors

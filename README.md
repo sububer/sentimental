@@ -11,10 +11,26 @@ See [installation guide](#installation-guide) below for specifics on setting up 
 ---
 
 ## Data Collection And Preparation
-TBD  
+The data source for the sentiment analysis is Twitter Search API, specifically the [/2/tweets/search](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent) endpoint.  
 
-## Approach Taken  
+1. To run this application, you will need to [open an account](https://developer.twitter.com/en/docs/twitter-api/getting-started/getting-access-to-the-twitter-api) in the Twitter Developer platform to obtaion a bearer token. See [config_example.py](./config_example.py) for how to stage your bearer token.
+2. Modify the [query](https://github.com/sububer/sentimental/blob/main/data_input.py#L8)
+    - by default the [data_input.py](./data_input.py) will grab the past 7 days of data which is the limit of the api
+3. [query.py](./query.py) contains the `TwitterQuery` class for managing the querying and data scraping/prep
+3. [utils.py](./utils.py) wraps the cleaning such as:
+    - Case normalization/ standardizing text
+    - Removing Unicode Characters (Punctuation, Emoji’s, URL’s and @’s)
+    - Removing hyperlinks, marks and styles
+    - Removing Stopwords (words that don’t value)
+    - Stemming / Lemmatizing text
+    - Tokenize tweets text
+4. resultant data is saved as .csv format in `./data/` folder, eg [2022323_144.csv](./data/2022323_144.csv)  
 
+## Analysis Approach  
+
+Analysis Steps:
+1) [sentiment.py](./sentiment.py) is used to analyze the csv data
+2) 
 
 
 ## Results  
